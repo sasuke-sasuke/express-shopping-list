@@ -1,12 +1,14 @@
 const express = require("express");
 const ExpressError = require("./expressError");
-
 const app = express();
+const itemRoutes = require("./routes/items");
 app.use(express.json());
+
+app.use("/items", itemRoutes);
 
 // 404 handler
 app.use((req, res, next) => {
-  return new ExpressError("Page Not Found", 404);
+  return new ExpressError("Not Found", 404);
 });
 
 // general error handler
